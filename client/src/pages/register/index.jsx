@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Form, Input, Button } from "@arco-design/web-react";
+import request from "@/utils/http.js";
 const FormItem = Form.Item;
 
 const Register = () => {
@@ -10,7 +11,7 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       const values = await form.validate();
-      console.log("表单值:", values);
+      const response = await request.post("/register", values);
     } catch (error) {}
   };
 
