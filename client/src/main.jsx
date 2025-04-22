@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router";
 import App from "@/App.jsx";
 import "@/index.css";
 import "@arco-design/web-react/dist/css/arco.css";
+import "@arco-design/web-react/es/_util/react-19-adapter";
 
 createRoot(document.getElementById("root")).render(
   // <StrictMode>

@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { Form, Input, Button } from "@arco-design/web-react";
+import { Form, Input, Button, Message } from "@arco-design/web-react";
+import request from "@/utils/http.js";
 const FormItem = Form.Item;
 
 const Login = () => {
@@ -8,10 +9,17 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    try {
-      const values = await form.validate();
-      console.log("表单值:", values);
-    } catch (error) {}
+    const values = await form.validate();
+    const response = await request.post("/login", values);
+    if (response.status === 200) {
+      if (response.data.success) {
+        Message.success(response.data.message);
+        localStorage.setItem("token", response.data.token);
+        navigate("/dashboard");
+      } else {
+        Message.error(response.data.message);
+      }
+    }
   };
 
   const handleRegisterRedirect = () => {

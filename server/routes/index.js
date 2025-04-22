@@ -1,8 +1,9 @@
 import Router from "koa-router";
-import authController from "../controllers/authController.js";
+import userController from "../controllers/userController.js";
 
 const router = new Router();
 
-router.post("/register", authController.register);
+router.post("/register", userController.register);
+router.post("/login", userController.login);
 
 export default router;

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { Form, Input, Button } from "@arco-design/web-react";
+import { Form, Input, Button, Message } from "@arco-design/web-react";
 import request from "@/utils/http.js";
 const FormItem = Form.Item;
 
@@ -9,10 +9,16 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    try {
-      const values = await form.validate();
-      const response = await request.post("/register", values);
-    } catch (error) {}
+    const values = await form.validate();
+    const response = await request.post("/register", values);
+    if (response.status === 200) {
+      if (response.data.success) {
+        Message.success(response.data.message);
+        navigate("/");
+      } else {
+        Message.error(response.data.message);
+      }
+    }
   };
 
   const handleBackToLogin = () => {
