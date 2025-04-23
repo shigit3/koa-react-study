@@ -32,18 +32,11 @@ const login = async (username, password) => {
     throw new Error("用户名或密码错误");
   }
 
-  if (!user.token) {
-    const token = jwt.sign(
-      { id: user.id, username: user.username },
-      SECRET_KEY,
-      {
-        expiresIn: "1h",
-      }
-    );
-    return await userMapper.updateUserToken(user.id, token);
-  }
+  const token = jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, {
+    expiresIn: "1m",
+  });
 
-  return user;
+  return await userMapper.updateUserToken(user.id, token);
 };
 
 export default {

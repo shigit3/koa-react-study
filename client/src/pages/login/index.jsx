@@ -14,7 +14,7 @@ const Login = () => {
     if (response.status === 200) {
       if (response.data.success) {
         Message.success(response.data.message);
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", response.data.data.token);
         navigate("/dashboard");
       } else {
         Message.error(response.data.message);

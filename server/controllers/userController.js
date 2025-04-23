@@ -5,20 +5,9 @@ const register = async (ctx) => {
 
   try {
     const newUser = await userService.registerUser(username, password);
-    ctx.status = 200;
-    ctx.body = {
-      success: true,
-      code: 1000,
-      message: "注册成功",
-      data: newUser,
-    };
+    ctx.responseHandler(200, 1000, "注册成功", true, newUser);
   } catch (error) {
-    ctx.status = 200;
-    ctx.body = {
-      success: false,
-      code: 2001,
-      message: error.message,
-    };
+    ctx.responseHandler(200, 2001, error.message, false);
   }
 };
 
@@ -27,20 +16,9 @@ const login = async (ctx) => {
 
   try {
     const user = await userService.login(username, password);
-    ctx.status = 200;
-    ctx.body = {
-      success: true,
-      code: 1000,
-      message: "登录成功",
-      data: user,
-    };
+    ctx.responseHandler(200, 1000, "登录成功", true, user);
   } catch (error) {
-    ctx.status = 200;
-    ctx.body = {
-      success: false,
-      code: 2001,
-      message: error.message,
-    };
+    ctx.responseHandler(200, 2001, error.message, false);
   }
 };
 
