@@ -1,5 +1,7 @@
 import { Button, Message } from "@arco-design/web-react";
 import request from "@/utils/http.js";
+import reactLogo from "@/assets/react.svg";
+import "./index.css";
 
 const Dashboard = () => {
   const handleClick = async () => {
@@ -15,8 +17,9 @@ const Dashboard = () => {
 
   return (
     <div className="h-screen flex flex-col items-center justify-center">
-      <h1>Dashboard</h1>
-      <div className="w-1/2">
+      {/* <h1>Dashboard</h1> */}
+      <img src={reactLogo} className="logo react" alt="React Logo" />
+      <div className="w-1/2 mt-8">
         <Button type="outline" long onClick={handleClick}>
           Click!
         </Button>
